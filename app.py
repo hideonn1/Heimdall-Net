@@ -59,10 +59,10 @@ def escanear_conexion(datos_crudos, model, scaler, device):
 # EJEMPLO DE USO INMEDIATO
 # =====================================================================
 if __name__ == "__main__":
-    print("🧠 Levantando el motor de auditoría inteligente...")
+    print("Levantando el motor de auditoría inteligente...")
     try:
         model, scaler, device = inicializar_motor_ia()
-        print(f"✅ Motor operativo corriendo en: {device.type.upper()}")
+        print(f"Motor operativo corriendo en: {device.type.upper()}")
         
         # Simulación de un log de red sospechoso (33 métricas numéricas)
         log_prueba = [
@@ -74,9 +74,9 @@ if __name__ == "__main__":
         
         print(f"\n[RESULTADO] Alerta de Amenaza: {score * 100:.2f}%")
         if score > 0.5:
-            print("🚨 DIAGNÓSTICO SOC: MALICIOUS TRAFFIC (Activar contención)")
+            print("DIAGNÓSTICO SOC: MALICIOUS TRAFFIC (Activar contención)")
         else:
-            print("🔒 DIAGNÓSTICO SOC: CLEAN CONNECTION")
+            print("DIAGNÓSTICO SOC: CLEAN CONNECTION")
             
     except Exception as e:
-        print(f"❌ Error al iniciar la inferencia: {e}")
+        print(f"Error al iniciar la inferencia: {e}")

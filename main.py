@@ -15,7 +15,7 @@ log_usuario = (
     'duration=5 sentbyte=1250 rcvdbyte=8500 msg="Regular HTTPS traffic"'
 )
 
-print(f"\n📥 Log recibido para auditoría:\n{log_usuario}\n")
+print(f"\nLog recibido para auditoría:\n{log_usuario}\n")
 
 # 3. Traducir el log con nuestro Parser
 datos_vectorizados = parsear_log_fortinet(log_usuario)
@@ -25,9 +25,9 @@ probabilidad = escanear_conexion(datos_vectorizados, modelo, scaler, device)
 
 # 5. Dictamen del Analista IA
 print("="*50)
-print(f"📊 RESULTADO DE EVALUACIÓN: {probabilidad * 100:.2f}% de Amenaza")
+print(f"RESULTADO DE EVALUACIÓN: {probabilidad * 100:.2f}% de Amenaza")
 if probabilidad > 0.5:
-    print("🚨 ALERTA: Tráfico identificado como Ataque/Intrusión.")
+    print("ALERTA: Tráfico identificado como Ataque/Intrusión.")
 else:
-    print("🔒 SEGURO: Tráfico normal verificado.")
+    print("SEGURO: Tráfico normal verificado.")
 print("="*50)

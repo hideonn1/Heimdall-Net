@@ -50,9 +50,9 @@ if __name__ == "__main__":
         'duration=0 sentbyte=0 rcvdbyte=0'
     )
     
-    print("📝 Procesando log crudo de Fortinet...")
+    print("Procesando log crudo de Fortinet...")
     vector_listo = parsear_log_fortinet(log_crudo_fortinet)
     
-    print(f"\n✅ Vector de 33 características generado:")
+    print(f"\nVector de 33 características generado:")
     print(vector_listo)
     print(f"Métricas clave extraídas -> Duration: {vector_listo[0]} | Src_Bytes: {vector_listo[1]} | Count: {vector_listo[14]}")
