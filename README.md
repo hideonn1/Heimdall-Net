@@ -1,26 +1,47 @@
 # Heimdall-Net 🛡️
-*Neural Intrusion Detection Engine for Network Infrastructure.*
 
-Heimdall-Net es un sistema inteligente de detección de intrusiones (IDS) diseñado para monitorear el tráfico de red en tiempo real. Utiliza una red neuronal profunda entrenada para identificar patrones anómalos, combinando la precisión de PyTorch con la capacidad de captura de paquetes de Scapy.
+Neural Intrusion Detection Engine for Network Infrastructure.
+
+Heimdall-Net es un sistema inteligente de detección de intrusiones (IDS) basado en redes neuronales profundas (PyTorch). El sistema está diseñado para auditar registros de tráfico y logs de seguridad en busca de patrones anómalos.
 
 ## Características
-- **Inferencia en tiempo real:** Análisis de tráfico basado en modelos de deep learning.
-- **Detección de anomalías:** Identificación de comportamientos sospechosos (DoS, escaneos de red).
-- **API Integrada:** Endpoint listo para dashboards con FastAPI.
-- **Diseñado para Auditores:** Basado en estándares de ciberseguridad.
 
-## 🛠️ Instalación
-1. Clona el repositorio:
-   `git clone https://github.com/hideonn1/Heimdall-Net.git`
-2. Instala las dependencias:
-   `pip install -r requirements.txt`
+* Inferencia de Red Inteligente: Motor entrenado en arquitecturas de red profunda para clasificación de anomalías.
+* Pipeline Automatizado: Auto-generación de artefactos binarios (.pth y .pkl) mediante scripts de entrenamiento.
+* Microservicio Nativo: Backend asíncrono expuesto mediante una API REST en FastAPI.
+* Arquitectura Dockerizada: Entorno completamente aislado para asegurar portabilidad.
 
-## Cómo funciona
+## Despliegue Rápido (Con Docker) 🐋
 
+La forma más rápida de poner en marcha Heimdall-Net es utilizando Docker.
 
-1. **Captura:** El módulo `live_scanner.py` intercepta los paquetes de red.
-2. **Parsing:** `parser_soc.py` normaliza los datos.
-3. **Inferencia:** El motor cargado en `app.py` evalúa el riesgo y genera un veredicto.
+1. Clonar el repositorio:
+git clone [https://github.com/hideonn1/Heimdall-Net.git](https://github.com/hideonn1/Heimdall-Net.git)
+cd Heimdall-Net
+2. Construir la imagen de Docker:
+docker build -t heimdall-net .
+3. Correr el contenedor:
+docker run -d -p 8000:8000 --name guardian-soc heimdall-net
+4. Acceder a la API interactiva:
+Abre tu navegador e ingresa a: http://localhost:8000/docs
 
-## ⚠️ Nota sobre los modelos
-Debido a su tamaño, los archivos de pesos (`.pth`) y el escalador (`.pkl`) no están incluidos en este repositorio. Esta versión del software no es la última.
+## 💻 Instalación y Uso Local (Sin Docker)
+
+1. Instalar Dependencias:
+pip install -r requirements.txt
+2. Generar el Modelo:
+python train.py
+3. Ejecutar los Módulos:
+
+* Para la API: python -m uvicorn api.py:app --reload
+* Para el escáner: python live_scanner.py
+
+## Arquitectura del Pipeline
+
+El flujo de datos se divide en tres capas críticas:
+[ Capa de Entrada ] --> [ Capa de Procesamiento ] --> [ Capa de Inferencia ]
+Tráfico Crudo (Scapy) --> Parser & Normalización --> Red Neuronal (PyTorch)
+
+## Licencia
+
+Este proyecto es de código abierto para fines académicos.
